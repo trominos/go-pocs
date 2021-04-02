@@ -1,0 +1,17 @@
+service: helloworld
+provider:
+  name: aws
+  runtime: go1.x
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+functions:
+  lambda-time:
+    handler: bin/helloworld
+    events:
+      - s3:
+          bucket: tojo-go
+          event: s3:ObjectCreated:*
+ 
